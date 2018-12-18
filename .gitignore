@@ -1,0 +1,25 @@
+# File types
+*.log
+*.mo
+*.pyc
+*.dump
+*.gz
+*.swn
+*.swo
+*.swp
+.env
+*.env
+
+# OS files
+.DS_Store
+ehthumbs.db
+Icon?
+Thumbs.db
+*~
+
+# Configuration files
+/SteemLogs/local_settings.py
+/static
+/steemlogsenv
+SteemLogs.sock
+/SteemLogs/__pycache__
