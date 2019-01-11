@@ -12,9 +12,6 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
-from decouple import config, Csv
-
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,10 +20,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default=54321)
+SECRET_KEY = 'Secret'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
 ALLOWED_HOSTS = ['localhost']
 
 
@@ -75,6 +73,16 @@ WSGI_APPLICATION = 'SteemLogs.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#       'ENGINE': 'DB_ENGINE',
+#        'NAME': 'DB_NAME',
+#	'USER': 'DB_USER',
+#	'PASSWORD': 'DB_PASS',
+#	'HOST': 'localhost',
+#	'PORT': '',
+ #   }
+#}
 
 
 # Password validation
@@ -111,3 +119,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+# Local settings
+settings_file = __import__('app.local_settings').local_settings
+for setting_value in dir(settings_file):
+    locals()[setting_value] = getattr(settings_file, setting_value)
